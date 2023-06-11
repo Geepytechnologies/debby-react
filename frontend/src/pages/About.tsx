@@ -61,7 +61,10 @@ const About = (props: Props) => {
                 projects or communities. Whether it&apos;s through creating
                 engaging content, building a strong community, managing project
                 complexities, or delivering captivating speeches, she brings a
-                unique blend of skills to the table.
+                unique blend of skills to the table. With her deep understanding
+                of blockchain technology and the crypto market, she offers
+                valuable insights and predictions to help you stay ahead of the
+                curve.
               </p>
               <p>
                 If you&apos;re ready to take your blockchain project or

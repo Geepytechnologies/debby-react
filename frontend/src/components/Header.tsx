@@ -56,10 +56,25 @@ const Header = (props: Props) => {
     <>
       <header className="sticky bg-[rgb(36,36,36)] top-0 flex flex-col  w-full z-20  px-3 py-4">
         <div className="flex justify-between ">
-          <Logo />
-          <div className="hidden md:flex">
+          <motion.div
+            initial={{
+              x: -500,
+              opacity: 0,
+              scale: 0.5,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1.5,
+            }}
+            className="hidden md:flex"
+          >
             <Mysocials />
-          </div>
+          </motion.div>
+          <Logo />
           <motion.ul
             initial={{
               x: 500,

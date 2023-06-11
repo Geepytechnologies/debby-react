@@ -21,9 +21,12 @@ const Hero = (props: Props) => {
       <div className="flex w-full flex-col md:flex-row items-center justify-center h-full">
         <div className=" pl-4 py-4 flex flex-col  gap-3 pr-4 order-2 md:order-1">
           <h2 className="text-2xl">Hi, I&apos;m Deborah,</h2>
-          <h1 className="text-5xl lg:text-6xl text-dark flex items-center  min-h-[100px] md:min-h-[130px] font-semibold">
-            <span className="">{text}</span>
+          <h1 className="text-5xl lg:text-5xl text-dark flex items-center   font-semibold">
+            {/* <span className="">{text}</span> */}
             {/* <Cursor cursorColor="#eddaa7" /> */}
+            <span className="">
+              Blockchain project manager & community builder
+            </span>
           </h1>
           <h3 className="">
             With my expertise in blockchain technology, I have become a go-to
