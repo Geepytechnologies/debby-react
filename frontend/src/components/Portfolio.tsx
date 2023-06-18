@@ -35,6 +35,10 @@ const Portfolio = (props: Props) => {
             <p className="text-center">Metavists NFT</p>
           </div>
           <div className="flex flex-col gap-2">
+            <img src="/nexachain.jpg" />
+            <p className="text-center">Nexachain</p>
+          </div>
+          <div className="flex flex-col gap-2">
             <img src="/kwikpik.jpeg" />
             <p className="text-center">KwikPik</p>
           </div>
@@ -67,6 +71,10 @@ const Portfolio = (props: Props) => {
           <div className="flex flex-col gap-2">
             <img src="/metavists.jfif" />
             <p className="text-center">Metavists NFT</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <img src="/nexachain.jpg" />
+            <p className="text-center">Nexachain</p>
           </div>
           <div className="flex flex-col gap-2">
             <img src="/kwikpik.jpeg" />

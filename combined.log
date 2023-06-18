@@ -1,0 +1,14 @@
+10:15:15 [31merror[39m: Starting
+10:15:15 [33mwarn[39m: warning
+10:15:15 [32minfo[39m: info
+10:15:15 [34mdebug[39m: debug
+10:23:51 [32minfo[39m: [object Object]
+10:23:51 [31merror[39m: Starting
+10:23:51 [33mwarn[39m: warning
+10:23:51 [32minfo[39m: info
+10:23:51 [34mdebug[39m: debug
+10:26:29 [32minfo[39m: {"env":"development"}
+10:26:29 [31merror[39m: Starting
+10:26:29 [33mwarn[39m: warning
+10:26:29 [32minfo[39m: info
+10:26:29 [34mdebug[39m: debug

@@ -66,6 +66,20 @@ export const getPostBySlug = async (slug: string) => {
   return result.post;
 };
 
+export const checkEmailSubscription = async (email: string) => {
+  const query = gql`
+    query checkEmailSubscription($email: String!) {
+      emailSubscriptions(
+        where: { documentInStages_every: { stage: DRAFT }, email: $email }
+      ) {
+        email
+      }
+    }
+  `;
+  const result = (await request(graphqlAPI, query, { email })) as any;
+  return result;
+};
+
 export const createEmailSubscription = async (email: string) => {
   const query = gql`
     mutation CreateEmailSubscription($email: String!) {
