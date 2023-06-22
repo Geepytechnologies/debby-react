@@ -4,6 +4,9 @@ import { Mysocials } from "./Header";
 import Toastmessage, { notify } from "../utils/Toastmessage";
 import { checkEmailSubscription, createEmailSubscription } from "../utils";
 import { showWarning } from "../utils/Toastmessage";
+import axios from "axios";
+
+const domain = import.meta.env.VITE_DOMAIN;
 
 type Props = {};
 
@@ -12,10 +15,6 @@ const Footer = (props: Props) => {
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
 
-  useEffect(() => {
-    console.log({ mail: email });
-  }, [email]);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -23,25 +22,24 @@ const Footer = (props: Props) => {
     });
   };
 
-  const checkIfUserHasSubscribed = async () => {
-    try {
-      const response = await checkEmailSubscription(email);
-      return response;
-    } catch (err) {}
-  };
-
   const makeRequest = async () => {
     try {
-      const response = await checkEmailSubscription(email);
-      console.log({ res: response });
-      // const response = await createEmailSubscription(email);
-      // if (response) {
-      //   setEmail((prev) => "");
-      //   notify(
-      //     "Thank You For Subscribing" + "" + String.fromCodePoint(0x1f60a)
-      //   );
-      //   scrollToTop();
-      // }
+      const response = await axios.post(`${domain}/api/subscribe`, {
+        email: email,
+      });
+      if (response.data == "You're already a subscriber") {
+        setEmail((prev) => "");
+        notify(
+          "You're already a subscriber" + " " + String.fromCodePoint(0x1f60a)
+        );
+        scrollToTop();
+      } else {
+        setEmail((prev) => "");
+        notify(
+          "Thank You For Subscribing" + " " + String.fromCodePoint(0x1f60a)
+        );
+        scrollToTop();
+      }
     } catch (error) {
       showWarning("Try again Later");
       console.error(error); // Handle any errors

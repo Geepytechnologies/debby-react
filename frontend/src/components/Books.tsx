@@ -7,7 +7,7 @@ const Books = (props: Props) => {
   return (
     <div className="w-full flex flex-col items-center my-5 justify-center">
       <h2 className="text-center font-mont font-[600] text-xl p-2 text-gray-500 ">
-        Best Selling Books
+        Start your web3 Journey here
       </h2>
       <div className="w-full p-2 md:w-[80%] lg:w-[60%] flex items-center justify-center">
         <div className="shadow-2xl p-3">
@@ -31,7 +31,7 @@ const Books = (props: Props) => {
               className="flex gap-2 items-center p-2 justify-center bg-off text-white"
             >
               <AiFillEye />
-              Preview
+              Purchase
             </a>
           </div>
         </div>

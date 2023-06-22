@@ -70,7 +70,7 @@ const Header = (props: Props) => {
             transition={{
               duration: 1.5,
             }}
-            className="hidden md:flex"
+            className="hidden lg:flex"
           >
             <Mysocials />
           </motion.div>
@@ -89,7 +89,7 @@ const Header = (props: Props) => {
             transition={{
               duration: 1.5,
             }}
-            className="text-gray-300 hidden  md:flex gap-12 text-[20px] items-center justify-center"
+            className="text-gray-300 hidden  lg:flex gap-12 text-[20px] items-center justify-center"
           >
             <li>
               <a href="/about">About</a>
@@ -118,7 +118,7 @@ const Header = (props: Props) => {
             transition={{
               duration: 1.5,
             }}
-            className="flex flex-row md:hidden  text-[30px] font-[500]  text-gray-300 items-center"
+            className="flex flex-row lg:hidden  text-[30px] font-[500]  text-gray-300 items-center"
           >
             {!menu && <BiMenuAltRight onClick={() => togglemenu()} />}
             {menu && <AiOutlineClose onClick={() => togglemenu()} />}

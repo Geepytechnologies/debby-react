@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dcryptgirl</title>
+    <style>
+      /* Global styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .header {
+        height: 90px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(36, 36, 36);
+      }
+      .header h2 {
+        color: rgb(209, 213, 219);
+        font-weight: 500;
+        letter-spacing: 5px;
+        font-family: "Times new roman", Times, serif;
+        font-size: 30px;
+        text-transform: uppercase;
+      }
+
+      .text-header {
+        color: #f371ff;
+        text-align: center;
+      }
+
+      /* Content styles */
+      .content {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      /* Footer styles */
+      .footer {
+        font-size: 14px;
+        color: #888888;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="min-height: 100vh; display: flex; flex-direction: column">
+      <div class="header">
+        <h2>Dcryptgirl</h2>
+      </div>
+      <div style="position: relative; flex: 1">
+        <div
+          style="
+            background-image: url('./textlogo.jpeg');
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 3%;
+          "
+        ></div>
+        <div
+          style="
+            padding: 5px;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          "
+        >
+          <h2 class="text-header">Welcome to My Newsletter!</h2>
+          <p class="content">
+            <span style="text-decoration: italicize">Dear [username],</span
+            ><br /><br />
+            Thank you for subscribing to my newsletter. I'm excited to have you
+            on board as a part of our community. As a blockchain project manager
+            and community builder, I will keep you updated with the latest news,
+            events, and insights related to blockchain technology and our
+            project.
+            <br /><br />
+            Stay tuned for upcoming newsletters and exclusive content. Feel free
+            to reach out if you have any questions, ideas, or suggestions. I
+            look forward to engaging with you!
+          </p>
+          <div class="footer">
+            Best regards,<br />
+            <span style="letter-spacing: 2px">Dcryptgirl</span><br />
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          background-color: rgb(36, 36, 36);
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        "
+      >
+        &copy; 2023 Dcryptgirl. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

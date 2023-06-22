@@ -42,7 +42,7 @@
   animation-play-state: paused;
 }
 .logos-slide {
-  animation: 15s slide infinite linear;
+  animation: 20s slide infinite linear;
 }
 .logos-slide img {
   height: 150px;
