@@ -3,6 +3,7 @@ const path = require("path");
 const filepath = path.join(__dirname, "../public/email-list/email.txt");
 const transporter = require("../email/nodemailer.js");
 const logger = require("../logger");
+const emailVerify = require("email-verify");
 
 const checkSubscription = (email) => {
   return new Promise((resolve, reject) => {
@@ -18,6 +19,27 @@ const checkSubscription = (email) => {
     });
   });
 };
+
+const emailcheck = "bstringz5@gmail.com";
+// const emailres = await new Promise((resolve, reject) => {
+//   emailVerify.verify(emailcheck, function (err, info) {
+//     if (err) {
+//       logger.error("Error checking email:", err);
+//       reject(err);
+//     } else {
+//       resolve(info);
+//     }
+//   });
+// });
+// let message;
+// if (info.success) {
+//   message = "Email address is valid";
+//   console.log("Email is valid");
+// } else {
+//   message = "Email address is Invalid";
+//   console.log("Email is invalid");
+// }
+// res.send(message)
 
 const subscribe = async (req, res) => {
   const { email } = req.body;
@@ -35,28 +57,49 @@ const subscribe = async (req, res) => {
     html: personalizedEmail,
   };
 
-  const userIsSubscribed = await checkSubscription(email);
-  if (!userIsSubscribed) {
-    try {
-      fs.appendFile(filepath, email + "\n", (err) => {
-        if (err) {
-          logger.error("An error occurred while saving the file:", err);
-          return;
-        }
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            logger.error(error);
-          } else {
-            logger.info(`Email sent to ${email}: ` + info.response);
-          }
-        });
-        res.status(200).json("file saved and Email sent");
-      });
-    } catch (err) {
-      throw err;
-    }
+  const info = await new Promise((resolve, reject) => {
+    emailVerify.verify(email, function (err, info) {
+      if (err) {
+        logger.error("Error checking email:", err);
+        reject(err);
+      } else {
+        resolve(info);
+      }
+    });
+  });
+  let message;
+  if (info.success) {
+    message = "Email address is valid";
   } else {
-    res.json("You're already a subscriber");
+    message = "Email address is Invalid";
+  }
+
+  if (message === "Email address is Invalid") {
+    res.json(message);
+  } else {
+    const userIsSubscribed = await checkSubscription(email);
+    if (!userIsSubscribed) {
+      try {
+        fs.appendFile(filepath, email + "\n", (err) => {
+          if (err) {
+            logger.error("An error occurred while saving the file:", err);
+            return;
+          }
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              logger.error(error);
+            } else {
+              logger.info(`Email sent to ${email}: ` + info.response);
+            }
+          });
+          res.status(200).json("file saved and Email sent");
+        });
+      } catch (err) {
+        throw err;
+      }
+    } else {
+      res.json("You're already a subscriber");
+    }
   }
 };
 

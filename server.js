@@ -18,7 +18,7 @@ const subscriptionRoute = require("./routes/subscription");
 // });
 
 // Redirect HTTP to HTTPS using headers
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "Production") {
   app.use((req, res, next) => {
     if (req.headers["x-forwarded-proto"] !== "https") {
       res.redirect(`https://${req.hostname}${req.url}`);

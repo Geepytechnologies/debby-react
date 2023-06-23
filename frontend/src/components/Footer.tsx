@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { Mysocials } from "./Header";
-import Toastmessage, { notify } from "../utils/Toastmessage";
+import Toastmessage, { notify, showError } from "../utils/Toastmessage";
 import { checkEmailSubscription, createEmailSubscription } from "../utils";
 import { showWarning } from "../utils/Toastmessage";
 import axios from "axios";
+import Loader from "./Loader";
 
 const domain = import.meta.env.VITE_DOMAIN;
+
+// const domain = "http://localhost:3000";
 
 type Props = {};
 
@@ -14,6 +17,7 @@ const Footer = (props: Props) => {
   const year = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -23,26 +27,41 @@ const Footer = (props: Props) => {
   };
 
   const makeRequest = async () => {
+    setLoading(true);
     try {
-      const response = await axios.post(`${domain}/api/subscribe`, {
+      const response = await axios.post(`/api/subscribe`, {
         email: email,
       });
       if (response.data == "You're already a subscriber") {
+        setLoading(false);
         setEmail((prev) => "");
+        setIsValidEmail(false);
         notify(
           "You're already a subscriber" + " " + String.fromCodePoint(0x1f60a)
         );
         scrollToTop();
-      } else {
+      } else if (response.data == "Email address is Invalid") {
+        setLoading(false);
         setEmail((prev) => "");
+        setIsValidEmail(false);
+        showError(
+          "Email address is Invalid" + " " + String.fromCodePoint(0x1f622)
+        );
+        scrollToTop();
+      } else {
+        setLoading(false);
+        setEmail((prev) => "");
+        setIsValidEmail(false);
         notify(
           "Thank You For Subscribing" + " " + String.fromCodePoint(0x1f60a)
         );
         scrollToTop();
       }
     } catch (error) {
+      console.log(error);
       showWarning("Try again Later");
-      console.error(error); // Handle any errors
+      setLoading(false);
+      setIsValidEmail(false);
     }
   };
 
@@ -77,20 +96,24 @@ const Footer = (props: Props) => {
             <input
               type="email"
               value={email}
-              placeholder="Email"
+              placeholder="Your Email"
               onChange={handleEmailChange}
               className="outline-0 bg-white border-0 p-2 rounded-sm min-w-[200px] max-w-[250px]"
             />
             <div>
-              <button
-                type="submit"
-                disabled={!isValidEmail}
-                className={`border-2 tracking-wider border-off mt-3 text-off py-2 px-3 ${
-                  !isValidEmail && "opacity-10"
-                }`}
-              >
-                SUBMIT
-              </button>
+              {loading ? (
+                <Loader />
+              ) : (
+                <button
+                  type="submit"
+                  disabled={!isValidEmail}
+                  className={`border-2 tracking-wider border-off mt-3 text-off py-2 px-3 ${
+                    !isValidEmail && "opacity-10"
+                  }`}
+                >
+                  SUBMIT
+                </button>
+              )}
             </div>
           </form>
         </div>

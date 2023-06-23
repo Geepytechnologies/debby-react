@@ -26,6 +26,17 @@ export const showWarning = (err: string) =>
     progress: undefined,
     theme: "light",
   });
+export const showError = (err: string) =>
+  toast.error(err, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
 const Toastmessage = (props: Props) => {
   return (
