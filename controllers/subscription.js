@@ -20,26 +20,18 @@ const checkSubscription = (email) => {
   });
 };
 
-const emailcheck = "bstringz5@gmail.com";
-// const emailres = await new Promise((resolve, reject) => {
-//   emailVerify.verify(emailcheck, function (err, info) {
-//     if (err) {
-//       logger.error("Error checking email:", err);
-//       reject(err);
-//     } else {
-//       resolve(info);
-//     }
-//   });
-// });
-// let message;
-// if (info.success) {
-//   message = "Email address is valid";
-//   console.log("Email is valid");
-// } else {
-//   message = "Email address is Invalid";
-//   console.log("Email is invalid");
-// }
-// res.send(message)
+const checkIfEmailIsValid = (emailcheck) => {
+  return new Promise((resolve, reject) => {
+    emailVerify.verify(emailcheck, function (err, info) {
+      if (err) {
+        logger.error("Error checking email:", err);
+        reject(err);
+      } else {
+        resolve(info);
+      }
+    });
+  });
+};
 
 const subscribe = async (req, res) => {
   const { email } = req.body;
@@ -57,16 +49,7 @@ const subscribe = async (req, res) => {
     html: personalizedEmail,
   };
 
-  const info = await new Promise((resolve, reject) => {
-    emailVerify.verify(email, function (err, info) {
-      if (err) {
-        logger.error("Error checking email:", err);
-        reject(err);
-      } else {
-        resolve(info);
-      }
-    });
-  });
+  const info = await checkIfEmailIsValid(email);
   let message;
   if (info.success) {
     message = "Email address is valid";
